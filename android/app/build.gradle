@@ -133,7 +133,6 @@ dependencies {
     }
     // Personal Libraries
     implementation project(':lottie-react-native')
-    // implementation 'com.google.android.gms:play-services-ads:19.1.0'
 
 }
 
@@ -144,4 +143,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
+apply plugin: 'com.google.gms.google-services'
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
