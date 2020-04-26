@@ -7,8 +7,39 @@ import {
 } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { AdMobBanner } from 'react-native-admob'
+import PushNotification from 'react-native-push-notification'
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: ''
+    }
+  }
+  componentDidMount() {
+    PushNotification.configure({
+      onRegister: async ({ token }) => {
+        // Runs on login and generates a token to communicate with the FCM server (firebase)
+        //https://shift.infinite.red/react-native-node-js-and-push-notifications-e851b279a0cd
+        // The above tutorial isn't super well written but was crucial for me piecing this together
+        console.log(token);
+        this.setState({ token });
+      },
+      onNotification: (notification) => {
+        // Notification was received
+        console.log(notification)
+      },
+      // Sender ID comes from firebase, see docs here:
+      // https://github.com/zo0r/react-native-push-notification
+      senderID: "14949329329",
+      // Unsure about this but tutorial says keep it false
+      popInitialNotification: false,
+      // Yes, we need permission
+      requestPermissions: true
+    });
+  }
+
+
   render() {
     return (
       <>
@@ -22,6 +53,10 @@ class App extends React.Component {
             <View style={{ width: 200, height: 200, borderWidth: 1, borderColor: 'red' }}>
               <LottieView source={require('./images/doggieTrot.json')} autoPlay loop />
             </View>
+
+            <Text>
+              Notification FCM Token: {this.state.token}
+            </Text>
 
             <AdMobBanner
               adSize='banner'
