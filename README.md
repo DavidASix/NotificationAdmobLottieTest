@@ -36,3 +36,32 @@ include ':lottie-react-native'
 project(':lottie-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/lottie-react-native/src/android')
 
 ```
+
+And that is lottie installed.
+
+---
+
+### AdMob
+
+AdMob is where things begin to get interesting. As both RNPN and Admob have google play dependencies, and optional firebase dependencies, they can have conflict.
+
+We start with installation:
+`npm i --save react-native-admob@next`
+
+Then linking with:
+`npx react-native link react-native-admob`
+
+And adding in the AdMob identifier to the Android Manifest file:
+```
+<meta-data
+  android:name="com.google.android.gms.ads.APPLICATION_ID"
+  android:value="ca-app-pub-3940256099942544~3347511713" />
+```
+
+And all done!
+
+---
+
+### React Native Push Notification
+
+Lastly is the big beast, RNPN
