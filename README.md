@@ -9,6 +9,21 @@ Installation started with disabling autolinking in the react-native.config.js fi
 
 In order to assess why I was getting so many crashed I needed to know which code was being edited when, so the next step was setting up this repository to help with version control and visualizing where information was changed when running react-native link
 
+
+---
+
+### GIF's
+
+A quick reference for future. To intergrate GIF support add the following lines to your dependecies in **android/app/build.gradle**
+
+```
+dependencies {
+    ...
+     // GIFs
+    implementation 'com.facebook.fresco:fresco:1.+'
+    implementation 'com.facebook.fresco:animated-gif:2.0.0'
+  }
+ ```
 ---
 
 ### Lottie
